@@ -147,7 +147,7 @@ public class Controller : MonoBehaviour
             animHead.SetBool("IsDead", true);
             if(DeadTime > 100f)
             {
-                SceneManager.LoadScene("PlayableReleaseOne");
+                SceneManager.LoadScene("PlayableReleaseTwo");
             }
             
         }
