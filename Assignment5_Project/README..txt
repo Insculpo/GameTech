@@ -1,3 +1,5 @@
+The end point is found when you locate a large dark rectangular structures in a big room.
+
 Controls
 
 WASD - Movement
