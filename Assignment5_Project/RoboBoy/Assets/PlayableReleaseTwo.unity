@@ -9823,7 +9823,7 @@ PrefabInstance:
     - target: {fileID: 1339463415, guid: fad1e3dd2f0cbad4b919355132c881c5, type: 3}
       propertyPath: BossDoor
       value: 
-      objectReference: {fileID: 2136433176}
+      objectReference: {fileID: 1441294940}
     - target: {fileID: 1553310906, guid: fad1e3dd2f0cbad4b919355132c881c5, type: 3}
       propertyPath: m_IsTrigger
       value: 1
