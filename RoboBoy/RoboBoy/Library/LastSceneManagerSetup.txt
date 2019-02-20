@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/PlayableReleaseTwo.unity
+  isLoaded: 1
+  isActive: 1
