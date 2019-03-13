@@ -14,9 +14,8 @@ public class Gravity : MonoBehaviour
         centralMass = GetComponent<Rigidbody>();
         Gravity[] attractors = FindObjectsOfType<Gravity>();
         //For the sake of convenience.
-        foreach (Gravity Grav in attractors)
-        {
-            Grav.GravConstant = GravConstant;
+        foreach (Gravity Grav in attractors) { 
+                Grav.GravConstant = GravConstant;
         }
     }
 
@@ -25,7 +24,7 @@ public class Gravity : MonoBehaviour
         Gravity[] attractors = FindObjectsOfType<Gravity>(); 
         foreach (Gravity Grav in attractors)
         {
-            if (Grav != this)
+            if (Grav != this && Grav.gameObject.tag != "World")
             {
                 Attract(Grav);
             }

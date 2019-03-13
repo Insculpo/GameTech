@@ -258,6 +258,7 @@ MonoBehaviour:
   AphelionDistance: 0
   VCounter: {x: 0, y: 0, z: 0}
   Eccentricity: 1
+  Retrograde: 0
   OrbitalVelocity: {x: 0, y: 0, z: 0}
   CentralBody: {fileID: 0}
   GravityWell: {fileID: 0}

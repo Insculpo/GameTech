@@ -20,7 +20,7 @@ public class CrashHarm : MonoBehaviour
     private void OnTriggerEnter(Collider collision)
     {
         HealthSystem Harm = collision.gameObject.GetComponent<HealthSystem>();
-        Rigidbody ColliderMomentum = collision.gameObject.GetComponent<Rigidbody>();
+        Rigidbody ColliderMomentum = collision.gameObject.GetComponentInParent<Rigidbody>();
         if (Harm != null)
         {
             Debug.Log("Collision Detected...");

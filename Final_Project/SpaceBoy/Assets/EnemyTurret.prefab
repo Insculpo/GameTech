@@ -237,6 +237,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 100
   ThisObject: {fileID: 0}
+  IsDead: 0
 --- !u!114 &5517022139996372936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,7 +250,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d53433891ae9a643a19cb5da44adf42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RailgunModule: {fileID: 5517022139534318271}
+  RailgunModule:
+  - {fileID: 5517022139534318271}
   Player: {fileID: 0}
   MinRecharge: 30
   MaxRecharge: 60

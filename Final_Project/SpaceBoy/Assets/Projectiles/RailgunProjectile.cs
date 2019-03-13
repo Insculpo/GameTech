@@ -2,51 +2,46 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RailgunProjectile : MonoBehaviour
+public class RailgunProjectile : Projectile
 {
     public GameObject LauncherOrientation;
     public float RailgunForce = 100f;
-    public float LifeSpan = 1000f;
-    public float Damage = 10f;
-    public float Faction = 0f;
-
     float timer = 0f;
+    public float LaD = 0f;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        GetComponent<Rigidbody>().velocity += transform.TransformDirection(LauncherOrientation.transform.forward) * RailgunForce * -1;
+        Quaternion Rot = Quaternion.AngleAxis(LaD, Vector3.up) * LauncherOrientation.transform.rotation;
+        Vector3 LaDi = Rot * -LauncherOrientation.transform.forward;
+        GetComponent<Rigidbody>().velocity += (LaDi * RailgunForce);
+    }
+
+    public void LaunchDir(float LD)
+    {
+        LaD = LD;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(LifeSpan < timer)
-        {
-            Destroy(gameObject.GetComponent<BoxCollider>());
-            Destroy(this);
-
-        }
-        timer++;
+        CountDown();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if (Faction == 0f)
         {
-            if (collision.gameObject.GetComponent<HealthSystem>() != null && collision.gameObject.tag != "Player")
+            if (collision.gameObject.GetComponent<HealthSystem>() != null )
             {
+                Debug.Log("A Collided with " + collision.gameObject.name);
                 collision.gameObject.GetComponent<HealthSystem>().HurtMe(Damage);
                 Destroy(gameObject);
                 return;
             }
-            if (collision.gameObject.tag != "Player")
-            {
-                Destroy(gameObject);
-            }
         }
         if (Faction == 1f)
         {
-            if (collision.gameObject.tag == "Player")
+            if (collision.gameObject.tag == "Player" && collision.gameObject.GetComponent<HealthSystem>() != null)
             {
                 collision.gameObject.GetComponent<HealthSystem>().HurtMe(Damage);
                 Destroy(gameObject);
@@ -55,6 +50,7 @@ public class RailgunProjectile : MonoBehaviour
             if (collision.gameObject.tag != "Defense")
             {
                 Destroy(gameObject);
+                return;
             }
         }
 

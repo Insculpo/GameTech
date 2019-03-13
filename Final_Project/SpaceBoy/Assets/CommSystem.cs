@@ -17,7 +17,7 @@ public class CommSystem : MonoBehaviour
     {
         CommRender = new LineRenderer();
         commTrig = CommSphere;
-        CommRender.material.color = Color.green;
+
     }
 
     // Update is called once per frame

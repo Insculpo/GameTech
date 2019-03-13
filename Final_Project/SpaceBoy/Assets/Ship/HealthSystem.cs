@@ -5,14 +5,14 @@ using UnityEngine;
 public class HealthSystem : MonoBehaviour
 {
     [SerializeField] float Health = 100f;
-    [SerializeField] GameObject ThisObject;
+    [SerializeField] GameObject Parent;
     float FadeOut = 1f;
     public bool IsDead = false;
     bool NextFrame = false;
     // Start is called before the first frame update
     void Start()
     {
-        ThisObject = gameObject;   
+
     }
 
     // Update is called once per frame
@@ -20,18 +20,7 @@ public class HealthSystem : MonoBehaviour
     {
         if (Health < 0)
         {
-            FadeOut -= 0.05f;
-            GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, FadeOut);
-            if(NextFrame == true)
-            {
-                KillTheKids();
-                ThisObject.SetActive(false);
-            }
-            if (FadeOut <= 0)
-            {
-                IsDead = true;
-                NextFrame = true;
-            }
+                StartCoroutine(KillTheParent());
         }
     }
 
@@ -39,14 +28,24 @@ public class HealthSystem : MonoBehaviour
     {
         Health -= dmg;
     }
-
-    void KillTheKids()
+    IEnumerator KillTheParent()
     {
-        for(int c = 0; c < transform.childCount; c++)
+        while (FadeOut > 0)
         {
-            transform.GetChild(c).gameObject.SetActive(false);
+
+            FadeOut -= 0.05f;
+            if (Parent.GetComponent<SpriteRenderer>() != null)
+            {
+                Parent.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, FadeOut);
+            } else
+            {
+                Debug.Log("Object missing sprite renderer! " + Parent.gameObject.name);
+            }
+            yield return null;
         }
+        Parent.gameObject.SetActive(false);
     }
+        
 
     public float GetHealth()
     {

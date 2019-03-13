@@ -8,6 +8,7 @@ TagManager:
   - Defense
   - World
   - MiniMap
+  - Sun
   layers:
   - Default
   - TransparentFX

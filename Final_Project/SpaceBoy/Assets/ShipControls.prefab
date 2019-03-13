@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RP: {fileID: 4018335117085798523, guid: f3fdb2c97c3f03243b0be942ee4ce00f, type: 3}
+  AttackAngle: 0
 --- !u!1 &1237483457302088168
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,7 +150,15 @@ MonoBehaviour:
   ThrustFactor: 30
   StrafeFactor: 50
   RotationFactor: 5
+  ImpulseFactor: 10
+  VelCap: 100
+  ImpulseDelay: 10
+  impulseTimer: 0
+  rechargeDelay: 20
+  rechargeRate: 0.5
+  CanImpulse: 1
   thrustSound: {fileID: 0}
+  AimHere: {fileID: 0}
   ShipCoordinates: {x: 0, y: 0}
   isThrusting: 0
 --- !u!54 &1237483457302088169
@@ -223,6 +232,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 100
   ThisObject: {fileID: 0}
+  IsDead: 0
 --- !u!82 &4032413626524092664
 AudioSource:
   m_ObjectHideFlags: 0
@@ -426,14 +436,14 @@ GameObject:
   - component: {fileID: 4032413627901740091}
   - component: {fileID: 4032413627901740090}
   - component: {fileID: 4032413627901740036}
-  - component: {fileID: 4032413627901740037}
+  - component: {fileID: 1468897788868862877}
   m_Layer: 0
   m_Name: CommSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4032413627901740088
 Transform:
   m_ObjectHideFlags: 0
@@ -506,7 +516,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.00001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4032413627901740037
+--- !u!114 &1468897788868862877
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -515,6 +525,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4032413627901740039}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5c60c66134f04c4eaf9386b9c820653, type: 3}
+  m_Script: {fileID: 11500000, guid: ab7a327c3db2c6340a3c01007aa02c5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  commRespawn: 1000
+  ActivatedComm: 0
+  waveRate: 0.2
+  CommSphere: {fileID: 0}
