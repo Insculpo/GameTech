@@ -31,7 +31,7 @@ public class RailgunProjectile : Projectile
     {
         if (Faction == 0f)
         {
-            if (collision.gameObject.GetComponent<HealthSystem>() != null )
+            if (collision.gameObject.GetComponent<HealthSystem>() != null && collision.gameObject.tag != "Player")
             {
                 Debug.Log("A Collided with " + collision.gameObject.name);
                 collision.gameObject.GetComponent<HealthSystem>().HurtMe(Damage);

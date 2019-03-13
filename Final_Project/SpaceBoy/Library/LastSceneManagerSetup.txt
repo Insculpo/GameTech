@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/WYTHEFUCKDOYOULISTENJTOTHOSEPOEPLE.unity
+- path: Assets/Save.unity
   isLoaded: 1
   isActive: 1

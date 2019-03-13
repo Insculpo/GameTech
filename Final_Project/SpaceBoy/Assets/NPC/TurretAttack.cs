@@ -22,6 +22,7 @@ public class TurretAttack : TurretModule
     void Start()
     {
         RandomReload = Random.Range(MinRecharge, MaxRecharge);
+        Player = FindObjectOfType<ControlShip>().gameObject;
         RB = GetComponent<Rigidbody>();
     }
 

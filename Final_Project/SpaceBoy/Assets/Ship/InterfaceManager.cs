@@ -18,13 +18,12 @@ public class InterfaceManager : MonoBehaviour
     [SerializeField] RenderTexture Minimap;
     [SerializeField] GameObject SolarScrew;
     ControlShip PlayerLoc;
-    HealthSystem PlayerHP;
+    [SerializeField] HealthSystem PlayerHP;
     List<SolarHarm> SBurn;
     // Start is called before the first frame update
     void Start()
     {
         PlayerLoc = Player.GetComponent<ControlShip>();
-        PlayerHP = Player.GetComponent<HealthSystem>();
         ImpulseMeter.maxValue = PlayerLoc.ImpulseDelay;
 
     }

@@ -173,6 +173,7 @@ public class ControlShip : MonoBehaviour
         if (thrustSound.isPlaying == false)
         {
             thrustSound.Play();
+            thrustSound.spatialBlend = Random.Range(0.3f, 0.8f);
         }
     }
 
