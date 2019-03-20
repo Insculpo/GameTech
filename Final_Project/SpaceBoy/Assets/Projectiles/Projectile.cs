@@ -28,6 +28,13 @@ public class Projectile : MonoBehaviour
         LifeSpan--;
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "World")
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void OnTriggerEnter(Collider collision)
     {

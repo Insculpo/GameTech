@@ -23,7 +23,7 @@ public class EnemyShipController : MonoBehaviour
     bool WrapDelay = false;
     int WrapTime = 0;
     [SerializeField] bool NoEscape = false;
-    bool WakeSound = false;
+    public bool WakeSound = false;
 
     // Start is called before the first frame update
     void Start()
