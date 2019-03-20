@@ -61,6 +61,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Artifact.cs" />
+    <Compile Include="Assets\ArtifactPicker.cs" />
+    <Compile Include="Assets\AsteroidPlacer.cs" />
+    <Compile Include="Assets\BossHP.cs" />
     <Compile Include="Assets\CommRenderer.cs" />
     <Compile Include="Assets\CommSystem.cs" />
     <Compile Include="Assets\Coordinator.cs" />
@@ -72,8 +75,13 @@
     <Compile Include="Assets\EnemyShipController.cs" />
     <Compile Include="Assets\FreeParallax\Scripts\FreeParallax.cs" />
     <Compile Include="Assets\FreeParallax\Scripts\FreeParallaxDemo.cs" />
+    <Compile Include="Assets\Heal.cs" />
+    <Compile Include="Assets\ImpulseUpgrade.cs" />
     <Compile Include="Assets\Laser.cs" />
+    <Compile Include="Assets\LaserProjector.cs" />
+    <Compile Include="Assets\MissileAmmo.cs" />
     <Compile Include="Assets\MissileLauncher.cs" />
+    <Compile Include="Assets\MotherProbe.cs" />
     <Compile Include="Assets\NavArrow.cs" />
     <Compile Include="Assets\NewBehaviourScript.cs" />
     <Compile Include="Assets\NPC\EnemyMovement.cs" />
@@ -83,16 +91,20 @@
     <Compile Include="Assets\Projectiles\HomingMissile.cs" />
     <Compile Include="Assets\Projectiles\Projectile.cs" />
     <Compile Include="Assets\Projectiles\RailgunProjectile.cs" />
+    <Compile Include="Assets\RailgunAmmo.cs" />
     <Compile Include="Assets\Ship\ControlShip.cs" />
     <Compile Include="Assets\Ship\FollowShip.cs" />
     <Compile Include="Assets\Ship\HealthSystem.cs" />
     <Compile Include="Assets\Ship\InterfaceManager.cs" />
     <Compile Include="Assets\Ship\Weapon\RailGun.cs" />
     <Compile Include="Assets\Ship\Weapon\WeaponController.cs" />
+    <Compile Include="Assets\Spawner.cs" />
     <Compile Include="Assets\StaticRecord.cs" />
     <Compile Include="Assets\Sunlight.cs" />
+    <Compile Include="Assets\ThrustBurn.cs" />
     <Compile Include="Assets\TouchToKill.cs" />
     <Compile Include="Assets\TurretModule.cs" />
+    <Compile Include="Assets\Universe Sounds Free Pack\EyeLook.cs" />
     <Compile Include="Assets\World\AsteroidController.cs" />
     <Compile Include="Assets\World\CrashHarm.cs" />
     <Compile Include="Assets\World\Geostationary.cs" />
@@ -107,12 +119,14 @@
     <Compile Include="Assets\World\Wormhole.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+    <None Include="Assets\sprites.json.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\FreeParallax\Readme.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\explosionsoundslite\readme.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
