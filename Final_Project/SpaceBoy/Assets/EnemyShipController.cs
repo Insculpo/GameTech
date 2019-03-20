@@ -133,13 +133,13 @@ public class EnemyShipController : MonoBehaviour
 
     void Wrap()
     {
-        if (!xWrap && (transform.position.x > 5000 || transform.position.x < -5000))
+        if (!xWrap && (transform.position.x > 8000 || transform.position.x < -8000))
         {
             Vector3 newPos = new Vector3(-transform.position.x, 0f, transform.position.z);
             transform.position = newPos;
             xWrap = true;
         }
-        if (!yWrap && (transform.position.z > 5000 || transform.position.z < -5000))
+        if (!yWrap && (transform.position.z > 8000 || transform.position.z < -8000))
         {
             Vector3 newPos = new Vector3(transform.position.x, 0f, -transform.position.z);
             transform.position = newPos;

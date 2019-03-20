@@ -6,11 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class DeathReset : MonoBehaviour
 {
+    [SerializeField] ControlShip CShip;
     [SerializeField] HealthSystem PlayerHP;
     // Start is called before the first frame update
     void Start()
     {
-        PlayerHP = GetComponentInChildren<HealthSystem>();
+
     }
 
     // Update is called once per frame

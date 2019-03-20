@@ -53,6 +53,7 @@ public class HealthSystem : MonoBehaviour
         }
         if (FadeOut <= 0f)
         {
+            IsDead = true;
             Parent.gameObject.SetActive(false);
         }
     }
