@@ -1,5 +1,68 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3291906908056526813
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4164351307543443632}
+  - component: {fileID: 2407772211856968229}
+  - component: {fileID: 4516247670498151928}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4164351307543443632
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3291906908056526813}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.05, y: 1.05, z: 1.05}
+  m_Children: []
+  m_Father: {fileID: 6719135316545095879}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &2407772211856968229
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3291906908056526813}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4516247670498151928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3291906908056526813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c249b12ac726274f8679c50d1d40743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 270
+  Parent: {fileID: 0}
+  DeathSound: {fileID: 0}
+  DelayFactor: 0.1
+  IsDead: 0
+  faction: 1
 --- !u!1 &6719135316545095881
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,6 +75,9 @@ GameObject:
   - component: {fileID: 6719135316545095876}
   - component: {fileID: 6719135316545095877}
   - component: {fileID: 6719135316545095883}
+  - component: {fileID: 4843426448304263737}
+  - component: {fileID: 2613277413938678921}
+  - component: {fileID: 1694735922}
   m_Layer: 0
   m_Name: AsteroidChunk
   m_TagString: Untagged
@@ -26,13 +92,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6719135316545095881}
-  m_LocalRotation: {x: -0.7059112, y: -0.043158215, z: -0.043173235, w: -0.7056648}
+  m_LocalRotation: {x: 0.7059111, y: 0.043161396, z: 0.043173853, w: 0.7056647}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4.643103, y: 4.643103, z: 4.643103}
-  m_Children: []
+  m_LocalScale: {x: 4.1515517, y: 4.121409, z: 4.151558}
+  m_Children:
+  - {fileID: 6229074919536889081}
+  - {fileID: 4164351307543443632}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90.02, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 97, y: -89.837006, z: -89.836}
 --- !u!212 &6719135316545095876
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -70,8 +138,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b8141216e7ab68f4197a90c35ad81f21, type: 3}
-  m_Color: {r: 0.3773585, g: 0.29619083, b: 0.14061944, a: 1}
+  m_Sprite: {fileID: 21300016, guid: eeeeba8e59984eb42b146610a81d6daa, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -108,5 +176,140 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 84
   m_CollisionDetection: 0
+--- !u!114 &4843426448304263737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6719135316545095881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83e66c822cff9ce44ba3f261ed2dd857, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  centralMass: {fileID: 0}
+  GravConstant: 0.4
+  PublicForce: 0
+--- !u!114 &2613277413938678921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6719135316545095881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d60d963285fdb9447a38e9eefdd8f2b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ParentWorld: {fileID: 0}
+  SemiMajor: 700
+  AngleOfMajorAxis: 0
+  SemiMinor: 700
+  VCounter: {x: 0, y: 0, z: 0}
+  Eccentricity: 1
+  Retrograde: 0
+  OrbitIteration: 0
+  ResetValue: 0
+  Vela: 0.03
+  AccelerationFactor: 1
+  GravVelocity: 0
+  StartPos: {x: 0, y: 0, z: 0}
+  EndPos: {x: 0, y: 0, z: 0}
+  OrbitalVelocity: {x: 0, y: 0, z: 0}
+  VelCap: 40
+  CentralBody: {fileID: 0}
+  GravityWell: {fileID: 0}
+  ConversionForce: 4000
+--- !u!114 &1694735922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6719135316545095881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 513f7a0ba68acc74c80b47b0c72fec0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  asteroidTypes:
+  - {fileID: 21300000, guid: eeeeba8e59984eb42b146610a81d6daa, type: 3}
+  - {fileID: 21300002, guid: eeeeba8e59984eb42b146610a81d6daa, type: 3}
+  - {fileID: 21300004, guid: eeeeba8e59984eb42b146610a81d6daa, type: 3}
+  - {fileID: 21300006, guid: eeeeba8e59984eb42b146610a81d6daa, type: 3}
+  - {fileID: 21300008, guid: eeeeba8e59984eb42b146610a81d6daa, type: 3}
+  - {fileID: 21300010, guid: eeeeba8e59984eb42b146610a81d6daa, type: 3}
+  - {fileID: 21300012, guid: eeeeba8e59984eb42b146610a81d6daa, type: 3}
+  - {fileID: 21300014, guid: eeeeba8e59984eb42b146610a81d6daa, type: 3}
+  - {fileID: 21300016, guid: eeeeba8e59984eb42b146610a81d6daa, type: 3}
+  - {fileID: 21300020, guid: eeeeba8e59984eb42b146610a81d6daa, type: 3}
+  - {fileID: 21300018, guid: eeeeba8e59984eb42b146610a81d6daa, type: 3}
+  - {fileID: 21300022, guid: eeeeba8e59984eb42b146610a81d6daa, type: 3}
+  - {fileID: 21300024, guid: eeeeba8e59984eb42b146610a81d6daa, type: 3}
+  - {fileID: 21300026, guid: eeeeba8e59984eb42b146610a81d6daa, type: 3}
+  DistanceMin: 2300
+  DistanceMax: 2700
+  ParentCenter: {fileID: 0}
+--- !u!1 &7267269939739339169
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6229074919536889081}
+  - component: {fileID: 3110855646240717708}
+  - component: {fileID: 2403380390788007124}
+  m_Layer: 0
+  m_Name: CrashLayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6229074919536889081
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7267269939739339169}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.7135, y: 1.7135, z: 1.7135}
+  m_Children: []
+  m_Father: {fileID: 6719135316545095879}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3110855646240717708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7267269939739339169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d51940ac14734147bcac4b55e5220ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CentralObj: {fileID: 0}
+  ColDmg: 1
+--- !u!135 &2403380390788007124
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7267269939739339169}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}

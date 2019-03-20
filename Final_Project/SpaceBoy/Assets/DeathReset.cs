@@ -10,13 +10,18 @@ public class DeathReset : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerHP = GetComponent<HealthSystem>();
+        PlayerHP = GetComponentInChildren<HealthSystem>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(PlayerHP.IsDead == true)
+        if(PlayerHP == null)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        }
+        if (PlayerHP.IsDead == true)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }

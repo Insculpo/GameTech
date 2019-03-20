@@ -28,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8073466061727733626}
   m_LocalRotation: {x: -0.70710576, y: -0, z: -0, w: 0.7071079}
-  m_LocalPosition: {x: 3.44, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 7, z: 4.8024}
+  m_LocalPosition: {x: 3.821, y: -0, z: 2.734}
+  m_LocalScale: {x: 0.562, y: 1.1809253, z: 4.8024}
   m_Children:
   - {fileID: 5695480437673393675}
   m_Father: {fileID: 0}
@@ -72,12 +72,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 0.33354056, b: 0.25098038, a: 1}
+  m_Sprite: {fileID: 21300020, guid: 12483497c3001ba4e9d355ac2fc2d40b, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 2.56, y: 5.33}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -98,9 +98,10 @@ MonoBehaviour:
   LifeSpan: 200
   Damage: 10
   Faction: 1
+  LaD: 0
+  IsLaser: 0
   LauncherOrientation: {fileID: 0}
   RailgunForce: 100
-  LaD: 0
 --- !u!54 &8073466061727733627
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -156,7 +157,7 @@ Transform:
   m_GameObject: {fileID: 9028864167220355604}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.0475, y: 6.1603, z: 1}
   m_Children: []
   m_Father: {fileID: 8073466061727733630}
   m_RootOrder: 0
@@ -172,5 +173,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.1, z: 0.02}
+  m_Size: {x: 1, y: 0.3, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}

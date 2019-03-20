@@ -6,18 +6,27 @@ public class HomingMissile : Projectile
 {
     [SerializeField] public GameObject target;
     [SerializeField] public GameObject cursor;
+    [SerializeField] public GameObject LauncherKey;
     [SerializeField] Rigidbody MissileThruster;
     [SerializeField] float MissileRate = 100f;
     [SerializeField] float MissileHandling = 0.1f;
     [SerializeField] bool isPlayer = false;
     [SerializeField] float InitialVela = 2f;
+    [SerializeField] float MissileAcceleration = 1f;
+    [SerializeField] float AccelFactor = 0.1f;
+    [SerializeField] bool Accelerates = false;
+    [SerializeField] SpriteRenderer MissileThrust;
+    [SerializeField] AudioSource MissileLaunched;
+
 
     // Start is called before the first frame update
     void Awake()
     {
+        MissileLaunched = GetComponent<AudioSource>();
+        MissileLaunched.Play();
         if (isPlayer == false)
         {
-            MissileThruster.velocity = gameObject.transform.forward * InitialVela;
+           // MissileThruster.velocity = gameObject.transform.forward * InitialVela;
             if (target == null)
             {
                 target = Camera.main.transform.gameObject;
@@ -26,15 +35,19 @@ public class HomingMissile : Projectile
             if (target != null)
             {
                 target = FindObjectOfType<ControlShip>().gameObject;
-
             }
             return;
         }
         else
         {
-            MissileThruster.velocity = gameObject.transform.forward * InitialVela;
-            target = FindObjectOfType<CursorLock>().gameObject; 
+            LauncherKey = FindObjectOfType<ControlShip>().gameObject;
+            target = FindObjectOfType<CursorLock>().gameObject;
         }
+
+            Quaternion Rot = Quaternion.AngleAxis(LaD, Vector3.up) * LauncherKey.transform.rotation;
+            Vector3 LaDi = LauncherKey.transform.rotation * -LauncherKey.transform.forward;
+            GetComponent<Rigidbody>().velocity = (LaDi * InitialVela) + LauncherKey.GetComponent<Rigidbody>().velocity;
+
     }
 
     // Update is called once per frame
@@ -42,8 +55,22 @@ public class HomingMissile : Projectile
     {
         if (target != null)
         {
+            Flicker();
             CountDown();
             Chase();
+        }
+    }
+
+    void Flicker()
+    {
+        int MRand = Random.Range(0, 4);
+        if (MRand < 3)
+        {
+            MissileThrust.enabled = true;
+        }
+        else
+        {
+            MissileThrust.enabled = false;
         }
     }
 
@@ -54,36 +81,17 @@ public class HomingMissile : Projectile
         Quaternion RottingTurret = Quaternion.LookRotation(AimDirection);
         RottingTurret *= Quaternion.Euler(90f, 0f, 0f);
         transform.rotation = Quaternion.Lerp(transform.rotation, RottingTurret, MissileHandling * Time.deltaTime);
-        MissileThruster.velocity = (AimDirection * MissileRate);
+        if (Accelerates == true)
+        {
+            MissileThruster.velocity += (AimDirection.normalized * 0.1f * MissileAcceleration);
+            MissileAcceleration += AccelFactor;
+        }
+        else
+        {
+            MissileThruster.maxAngularVelocity = MissileHandling;
+            MissileThruster.velocity = AimDirection.normalized * MissileRate;
+        }
     }
 
 
-    private void OnTriggerEnter(Collider collision)
-    {
-        if (Faction == 0f)
-        {
-            if (collision.gameObject.GetComponent<HealthSystem>() != null && collision.gameObject.tag != "Player")
-            {
-                Debug.Log("A Collided with " + collision.gameObject.name);
-                collision.gameObject.GetComponent<HealthSystem>().HurtMe(Damage);
-                Destroy(gameObject);
-                return;
-            }
-        }
-        if (Faction == 1f)
-        {
-            if (collision.gameObject.tag == "Player" && collision.gameObject.GetComponent<HealthSystem>() != null)
-            {
-                collision.gameObject.GetComponent<HealthSystem>().HurtMe(Damage);
-                Destroy(gameObject);
-                return;
-            }
-            if (collision.gameObject.tag != "Defense")
-            {
-                Destroy(gameObject);
-                return;
-            }
-        }
-
-    }
 }

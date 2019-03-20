@@ -13,6 +13,7 @@ public class TurretAttack : TurretModule
     [SerializeField] bool PatternedFire = false;
     [SerializeField] float WakeDistance = 100f;
     [SerializeField] bool Rotates = true;
+    [SerializeField] Vector3 SetPos;
     int f = 0;
     Rigidbody RB;
     Vector3 PlayerLoc;
@@ -21,6 +22,7 @@ public class TurretAttack : TurretModule
     // Start is called before the first frame update
     void Start()
     {
+        transform.position = SetPos;
         RandomReload = Random.Range(MinRecharge, MaxRecharge);
         Player = FindObjectOfType<ControlShip>().gameObject;
         RB = GetComponent<Rigidbody>();

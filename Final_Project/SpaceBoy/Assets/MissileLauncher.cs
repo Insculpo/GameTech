@@ -6,13 +6,15 @@ public class MissileLauncher : MonoBehaviour
 {
     [SerializeField] HomingMissile HM;
     [SerializeField] float Recharge = 10f;
+    [SerializeField] float LaunchDirection = 0f;
     [SerializeField] public int MissileCount = 100;
     [SerializeField] public int MissileTimer = 0;
     [SerializeField] CursorLock TargetPos;
     [SerializeField] GameObject PlayerTarget;
     [SerializeField] bool PlayerLauncher = false;
     // Start is called before the first frame update
-    private void Awake()
+
+    void Start()
     {
         PlayerTarget = FindObjectOfType<ControlShip>().gameObject;
     }
@@ -31,6 +33,7 @@ public class MissileLauncher : MonoBehaviour
             if (PlayerLauncher == true && HM.target != null)
             {
                 HM.target = TargetPos.gameObject;
+                HM.LaD = LaunchDirection;
                 Instantiate(HM, transform.position, transform.parent.rotation);
             }
             else
@@ -39,6 +42,7 @@ public class MissileLauncher : MonoBehaviour
                 {
                     //JUST STOP
                     HM.target = PlayerTarget;
+                    HM.LaD = LaunchDirection;
                     Instantiate(HM, transform.position, transform.parent.rotation);
                 }
             }

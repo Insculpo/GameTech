@@ -5,6 +5,7 @@ using UnityEngine;
 public class Sunlight : MonoBehaviour
 {
     Transform sun;
+    Transform Parent;
     // Start is called before the first frame update
     void Start()
     {

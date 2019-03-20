@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class HealthSystem : MonoBehaviour
 {
-    [SerializeField] float Health = 100f;
+    [SerializeField] public float Health = 100f;
     [SerializeField] GameObject Parent;
+    [SerializeField] AudioSource DeathSound;
+    [SerializeField] float DelayFactor = 0.1f;
     float FadeOut = 1f;
     public bool IsDead = false;
     bool NextFrame = false;
+    public float faction = 1f;
+    float HarmTimer = 0;
+    bool Played = false;
     // Start is called before the first frame update
     void Start()
     {
-
+        DeathSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -20,32 +25,46 @@ public class HealthSystem : MonoBehaviour
     {
         if (Health < 0)
         {
-                StartCoroutine(KillTheParent());
+            if (Played == false)
+            {
+                DeathSound.Play();
+                Played = true;
+            }
+            StartCoroutine(KillTheParent());
+
+
         }
+        HarmTimer++;
     }
 
     public void HurtMe(float dmg)
     {
         Health -= dmg;
+        HarmTimer = 0;
     }
     IEnumerator KillTheParent()
     {
-        while (FadeOut > 0)
+        while (FadeOut > 0f)
         {
 
-            FadeOut -= 0.05f;
-            if (Parent.GetComponent<SpriteRenderer>() != null)
-            {
-                Parent.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, FadeOut);
-            } else
-            {
-                Debug.Log("Object missing sprite renderer! " + Parent.gameObject.name);
-            }
-            yield return null;
+            Parent.GetComponent<SpriteRenderer>().color = new Color(Parent.GetComponent<SpriteRenderer>().color.r, Parent.GetComponent<SpriteRenderer>().color.g, Parent.GetComponent<SpriteRenderer>().color.b, FadeOut);
+            FadeOut -= 0.001f;
+            yield return new WaitForSeconds(DelayFactor);
         }
-        Parent.gameObject.SetActive(false);
+        if (FadeOut <= 0f)
+        {
+            Parent.gameObject.SetActive(false);
+        }
     }
-        
+
+    public bool wasHarmed(float delayCheck)
+    {
+        if(HarmTimer > delayCheck)
+        {
+            return false;
+        }
+        return true;
+    }
 
     public float GetHealth()
     {

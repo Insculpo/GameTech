@@ -166,6 +166,7 @@ MonoBehaviour:
   Health: 1000
   Parent: {fileID: 1529667070}
   IsDead: 0
+  faction: 1
 --- !u!1 &1529667070
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,6 +277,7 @@ MonoBehaviour:
   Modulus: 0
   MoveThresholdMin: 200
   MoveThresholdMax: 500
+  NoEscape: 1
 --- !u!114 &1529667074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,6 +293,7 @@ MonoBehaviour:
   Health: 300
   Parent: {fileID: 0}
   IsDead: 0
+  faction: 1
 --- !u!54 &1529667073
 Rigidbody:
   m_ObjectHideFlags: 0

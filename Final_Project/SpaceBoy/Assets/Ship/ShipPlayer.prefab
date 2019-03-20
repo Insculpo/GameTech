@@ -233,6 +233,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HM: {fileID: 7567033147769161746, guid: b8e8c8675ba52d441bc37cc92f53dd83, type: 3}
   Recharge: 10
+  LaunchDirection: 0
   MissileCount: 100
   MissileTimer: 0
   TargetPos: {fileID: 0}
@@ -502,6 +503,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RP: {fileID: 4018335117085798523, guid: f3fdb2c97c3f03243b0be942ee4ce00f, type: 3}
   AttackAngle: 0
+  reload: 20
 --- !u!1 &2530329567555528992
 GameObject:
   m_ObjectHideFlags: 0
@@ -562,6 +564,7 @@ MonoBehaviour:
   Health: 100
   Parent: {fileID: 2530329567744452909}
   IsDead: 0
+  faction: 0
 --- !u!1 &2530329567744452909
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,6 +607,7 @@ Transform:
   - {fileID: 2530329566915850488}
   - {fileID: 2530329567555529183}
   - {fileID: 2530329566549811842}
+  - {fileID: 600261091815023713}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
@@ -667,10 +671,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e6a716640d08a14f9038a4ec35bd55a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ThrustFactor: 12
-  StrafeFactor: 4
+  ThrustFactor: 30
+  StrafeFactor: 25
+  StrafeImpulseBoost: 1
   RotationFactor: 1
-  ImpulseFactor: 100
+  ImpulseFactor: 120
   VelCap: 200
   ImpulseDelay: 10
   impulseTimer: 0
@@ -739,6 +744,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RailgunLauncher: {fileID: 2530329567039137440}
   Missiles: {fileID: 2530329566549811840}
+  Laser: {fileID: 0}
 --- !u!114 &2530329567744452904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -754,6 +760,7 @@ MonoBehaviour:
   Health: 100
   Parent: {fileID: 0}
   IsDead: 0
+  faction: 0
 --- !u!82 &2530329567744452905
 AudioSource:
   m_ObjectHideFlags: 0
@@ -878,4 +885,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e83627e759dec5343be7c0605986688b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerHP: {fileID: 0}
+  PlayerHP: {fileID: 2530329567555529182}
+--- !u!1 &8530472150705380843
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 600261091815023713}
+  - component: {fileID: 4179356949005114094}
+  m_Layer: 0
+  m_Name: SpinalMount (1)
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &600261091815023713
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8530472150705380843}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.000999186, y: 1.0319923, z: 0}
+  m_LocalScale: {x: 1.000002, y: 1.0000015, z: 1.0000015}
+  m_Children: []
+  m_Father: {fileID: 2530329567744452908}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4179356949005114094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8530472150705380843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 432823d180c55794ca8ce2721db73ebd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RP: {fileID: 4018335117085798523, guid: f3fdb2c97c3f03243b0be942ee4ce00f, type: 3}
+  AttackAngle: 0
+  reload: 20

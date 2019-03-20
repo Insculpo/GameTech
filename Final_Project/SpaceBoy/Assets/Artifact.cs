@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class Artifact : MonoBehaviour
 {
-    [SerializeField] Wormhole WormManager;
+    [SerializeField] protected Wormhole WormManager;
+    [SerializeField] protected SpriteRenderer ArtifactSprite;
+    [SerializeField] protected SpriteRenderer Marker;
     // Start is called before the first frame update
     void Start()
     {
-        
+        WormManager = FindObjectOfType<Wormhole>();
+        ArtifactSprite = GetComponentInParent<SpriteRenderer>();
+        ArtifactSprite = GetComponentInParent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -17,12 +21,14 @@ public class Artifact : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             WormManager.AddArtifact();
-            Collected();
+            Marker.enabled = false;
+            ArtifactSprite.enabled = false;
+            gameObject.SetActive(false);
         }
     }
 
-    void Collected()
+    void Collected(Collider other)
     {
-        gameObject.SetActive(false);
+
     }
 }

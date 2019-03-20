@@ -5,15 +5,15 @@ using UnityEngine;
 public class OrbitVelocity : MonoBehaviour
 {
     public GameObject ParentWorld;
-    [SerializeField] float SemiMajor = 1000f;
+    [SerializeField] public float SemiMajor = 1000f;
     [SerializeField] float AngleOfMajorAxis = 0f;
-    [SerializeField] float SemiMinor = 1000f;
+    [SerializeField] public float SemiMinor = 1000f;
     [SerializeField] Vector3 VCounter;
     [SerializeField] float Eccentricity = 1f;
     [SerializeField] bool Retrograde = false;
-    [SerializeField] float OrbitIteration = 0;
+    [SerializeField] public float OrbitIteration = 0;
     [SerializeField] float ResetValue;
-    [SerializeField] float Vela = .03f;
+    [SerializeField] public float Vela = .03f;
     [SerializeField] int AccelerationFactor = 1;
     [SerializeField] float GravVelocity;
     [SerializeField] Vector3 StartPos;

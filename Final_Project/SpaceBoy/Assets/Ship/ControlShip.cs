@@ -6,6 +6,7 @@ public class ControlShip : MonoBehaviour
 {
     public float ThrustFactor = 5f;
     public float StrafeFactor = 4f;
+    public float StrafeImpulseBoost = 4f;
     public float RotationFactor = 1f;
     public float ImpulseFactor = 10f;
     public float VelCap = 100f;
@@ -13,10 +14,27 @@ public class ControlShip : MonoBehaviour
     public float impulseTimer = 0f;
     public float rechargeDelay = 20f;
     public float rechargeRate = 0.5f;
+    public float Decelerator = 0.5f;
+    public float Shielding = 50f;
+    float Deceleration = 1f;
     public bool CanImpulse = true;
+    public bool UpdeadImpulse = false;
+    Vector3 CurrentVela;
+    Vector3 PrevVela;
+    Vector3 Acceleration;
     float Impulse;
     [SerializeField] AudioSource thrustSound;
     [SerializeField] CursorLock AimHere;
+    [SerializeField] HealthSystem HS;
+    [SerializeField] SpriteRenderer ThrusterBack;
+    [SerializeField] SpriteRenderer ThrusterFront;
+    [SerializeField] SpriteRenderer ThrusterLeft;
+    [SerializeField] SpriteRenderer ThrusterRight;
+    [SerializeField] SpriteRenderer ImpThrusterBack;
+    [SerializeField] SpriteRenderer ImpThrusterFront;
+    [SerializeField] SpriteRenderer ImpThrusterLeft;
+    [SerializeField] SpriteRenderer ImpThrusterRight;
+
     Rigidbody CentralHull;
     Transform Rotator;
     public Vector2 ShipCoordinates;
@@ -26,6 +44,7 @@ public class ControlShip : MonoBehaviour
     bool yWrap = false;
     bool WrapDelay = false;
     int WrapTime = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,7 +57,14 @@ public class ControlShip : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(UpdeadImpulse == true)
+        {
+            CanImpulse = true;
+        }
+        if(HS.GetHealth() < Shielding && HS.wasHarmed(rechargeDelay) == false)
+        {
+            HS.Health += rechargeRate;
+        }
         Wrap();
         WrapTime++;
         if(WrapTime > 10)
@@ -100,8 +126,10 @@ public class ControlShip : MonoBehaviour
 
     bool CheckThrust()
     {
-        if (Input.GetKeyDown(KeyCode.T))
+        float StrafeVar = 1f;
+        if (Input.GetKeyDown(KeyCode.T) && ImpulseFrame == true && UpdeadImpulse == true)
         {
+            ImpulseFrame = false;
             if (CanImpulse == false)
             {
                 CanImpulse = true;
@@ -112,43 +140,110 @@ public class ControlShip : MonoBehaviour
             }
         }
         bool DidThrust = false;
-        Aim();
+        //Aim();
+
+
         if (Input.GetKey(KeyCode.W))
         {
-            CentralHull.AddForce(transform.up * ThrustFactor * Impulse);
+            CentralHull.AddForce(transform.up * ThrustFactor * Impulse * Deceleration);
+            ThrustFlicker(ThrusterBack);
+            StartCoroutine(CheckImpulse(ImpThrusterBack));
             DidThrust = true;
         }
         if (Input.GetKey(KeyCode.S))
         {
-            CentralHull.AddForce(-transform.up * ThrustFactor * Impulse);
+            CentralHull.AddForce(-transform.up * ThrustFactor * Impulse * Deceleration);
+            ThrustFlicker(ThrusterFront);
+            StartCoroutine(CheckImpulse(ImpThrusterFront));
             DidThrust = true;
         }
         if (Input.GetKey(KeyCode.A))
         {
-            CentralHull.AddForce(-transform.right * StrafeFactor * Impulse);
+            if (DidThrust == true)
+            {
+                StrafeVar = Impulse * StrafeImpulseBoost;
+            }
+            ThrustFlicker(ThrusterLeft);
+            StartCoroutine(CheckImpulse(ImpThrusterLeft));
+            CentralHull.AddForce(-transform.right * StrafeFactor * StrafeVar * Deceleration);
             DidThrust = true;
         }
         if (Input.GetKey(KeyCode.D))
         {
-            CentralHull.AddForce(transform.right * StrafeFactor * Impulse);
+            if (DidThrust == true)
+            {
+                StrafeVar = Impulse * StrafeImpulseBoost;
+            }
+            ThrustFlicker(ThrusterRight);
+            StartCoroutine(CheckImpulse(ImpThrusterRight));
+            CentralHull.AddForce(transform.right * StrafeFactor * StrafeVar * Deceleration);
             DidThrust = true;
         }
 
-/*        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.Q))
         {
             Rotator.Rotate(0f, 0f, RotationFactor);
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.E))
         {
             Rotator.Rotate(0f, 0f, -RotationFactor);
-        }*/
+        }
 
         if (DidThrust == true)
         {
             impulseTimer = 0f;
             return true;
         }
+        else
+        {
+            DisableAllThrusts();
+        }
+        PrevVela = CentralHull.velocity;
         return false;
+    }
+
+    IEnumerator CheckImpulse(SpriteRenderer Imp)
+    {
+        int I = 0;
+        if (ImpulseFrame == true)
+        {
+            while (I < 5)
+            {
+                Imp.enabled = true;
+                I++;
+                yield return null;
+            }
+        }
+        else
+        {
+            Imp.enabled = false;
+        }
+
+    }
+
+    void DisableAllThrusts()
+    {
+        ImpThrusterBack.enabled = false;
+        ImpThrusterFront.enabled = false;
+        ImpThrusterLeft.enabled = false;
+        ImpThrusterRight.enabled = false;
+        ThrusterBack.enabled = false;
+        ThrusterFront.enabled = false;
+        ThrusterLeft.enabled = false;
+        ThrusterRight.enabled = false;
+    }
+
+    void ThrustFlicker(SpriteRenderer Thrusty)
+    {
+        int FlickProp = Random.Range(0, 6);
+        if(FlickProp < 5)
+        {
+            Thrusty.enabled = true;
+        }
+        else
+        {
+            Thrusty.enabled = false;
+        }
     }
 
     void Wrap()
